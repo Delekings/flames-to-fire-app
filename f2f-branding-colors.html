@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flames to Fire Devotionals — Brand Colors</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --flame-orange:  #E8500A;
+    --ember-gold:    #F5A623;
+    --sacred-green:  #4A8C2A;
+    --forest-deep:   #2D5A1B;
+    --smoke-charcoal:#2B2B2B;
+    --ash-white:     #F7F4EE;
+    --warm-cream:    #FDF6E3;
+    --iron-gray:     #6B6B6B;
+  }
+
+  body {
+    background: var(--smoke-charcoal);
+    font-family: 'Lato', sans-serif;
+    min-height: 100vh;
+    padding: 48px 24px 80px;
+    color: var(--ash-white);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .header .eyebrow {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    color: var(--ember-gold);
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.8rem, 5vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--ember-gold) 0%, var(--flame-orange) 55%, #C0392B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+  }
+  .header .sub {
+    font-size: 0.88rem;
+    color: var(--iron-gray);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 680px;
+    margin: 0 auto 52px;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--ember-gold));
+  }
+  .divider::after { background: linear-gradient(to left, transparent, var(--ember-gold)); }
+  .divider span { font-size: 1.2rem; }
+
+  /* ── PALETTE GRID ── */
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto 60px;
+  }
+
+  .swatch {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: default;
+  }
+  .swatch:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 18px 48px rgba(0,0,0,0.55);
+  }
+
+  .swatch-color {
+    height: 130px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 14px 16px;
+  }
+  .swatch-color::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.25));
+    border-radius: 0;
+  }
+  .swatch-role {
+    position: relative;
+    z-index: 1;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(4px);
+  }
+
+  .swatch-info {
+    background: #1e1e1e;
+    padding: 16px 18px 18px;
+  }
+  .swatch-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .swatch-hex {
+    font-size: 0.78rem;
+    color: var(--iron-gray);
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+  .swatch-desc {
+    font-size: 0.73rem;
+    color: #9a9a9a;
+    line-height: 1.5;
+  }
+
+  /* individual colors */
+  .c1 .swatch-color { background-color: #E8500A; }
+  .c2 .swatch-color { background-color: #F5A623; }
+  .c3 .swatch-color { background-color: #4A8C2A; }
+  .c4 .swatch-color { background-color: #2D5A1B; }
+  .c5 .swatch-color { background-color: #2B2B2B; }
+  .c6 .swatch-color { background-color: #F7F4EE; }
+
+  .c1 .swatch-name { color: #E8500A; }
+  .c2 .swatch-name { color: #F5A623; }
+  .c3 .swatch-name { color: #4A8C2A; }
+  .c4 .swatch-name { color: #4A8C2A; }
+  .c5 .swatch-name { color: #aaa; }
+  .c6 .swatch-name { color: #c0b090; }
+
+  /* ── USAGE SECTION ── */
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ember-gold);
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .usage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    max-width: 1000px;
+    margin: 0 auto 60px;
+  }
+
+  .usage-card {
+    background: #1a1a1a;
+    border-radius: 14px;
+    padding: 22px 24px;
+    border-left: 4px solid;
+    position: relative;
+    overflow: hidden;
+  }
+  .usage-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    opacity: 0.07;
+    transform: translate(30px, -30px);
+  }
+  .usage-card.u1 { border-color: #E8500A; }
+  .usage-card.u1::before { background: #E8500A; }
+  .usage-card.u2 { border-color: #F5A623; }
+  .usage-card.u2::before { background: #F5A623; }
+  .usage-card.u3 { border-color: #4A8C2A; }
+  .usage-card.u3::before { background: #4A8C2A; }
+  .usage-card.u4 { border-color: #F7F4EE; }
+  .usage-card.u4::before { background: #F7F4EE; }
+
+  .usage-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--iron-gray);
+    margin-bottom: 6px;
+  }
+  .usage-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .usage-text {
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.6;
+  }
+  .usage-dots {
+    display: flex;
+    gap: 6px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .dot {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.1);
+  }
+
+  /* ── PREVIEW BANNER ── */
+  .preview {
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 12px 50px rgba(0,0,0,0.5);
+  }
+  .preview-top {
+    background: linear-gradient(135deg, var(--forest-deep) 0%, var(--sacred-green) 100%);
+    padding: 36px 40px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .preview-top::before {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(245,166,35,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .preview-circle {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #fff;
+    flex-shrink: 0;
+    backdrop-filter: blur(4px);
+  }
+  .preview-text h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 900;
+  }
+  .preview-text p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  .preview-bottom {
+    background: var(--warm-cream);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .preview-quote {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--smoke-charcoal);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+  .preview-quote span {
+    color: var(--flame-orange);
+    font-weight: 700;
+    font-style: normal;
+  }
+  .cta-btn {
+    background: linear-gradient(135deg, var(--flame-orange), #C0392B);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 28px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(232,80,10,0.4);
+    white-space: nowrap;
+  }
+
+  /* ── TYPE PAIRINGS ── */
+  .type-box {
+    max-width: 1000px;
+    margin: 0 auto 50px;
+    background: #1a1a1a;
+    border-radius: 18px;
+    padding: 36px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  @media(max-width: 580px) { .type-box { grid-template-columns: 1fr; } }
+
+  .type-sample h3 {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--iron-gray);
+    margin-bottom: 14px;
+  }
+  .type-sample .heading {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .type-sample .body-copy {
+    font-size: 0.85rem;
+    color: #888;
+    line-height: 1.7;
+  }
+  .on-light { background: var(--warm-cream); border-radius: 12px; padding: 22px; }
+  .on-light .heading { color: var(--forest-deep); }
+  .on-light .highlight { color: var(--flame-orange); }
+  .on-light .body-copy { color: #555; }
+
+  .on-dark { background: var(--smoke-charcoal); border-radius: 12px; padding: 22px; border: 1px solid #333; }
+  .on-dark .heading { color: var(--ember-gold); }
+  .on-dark .highlight { color: var(--flame-orange); }
+
+  /* footer */
+  .footer-note {
+    text-align: center;
+    font-size: 0.72rem;
+    color: #444;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <p class="eyebrow">Brand Identity</p>
+  <h1>Flames to Fire<br>Devotionals</h1>
+  <p class="sub">Official Color System</p>
+</div>
+
+<div class="divider"><span>🔥</span></div>
+
+<!-- PALETTE -->
+<div class="palette">
+  <div class="swatch c1">
+    <div class="swatch-color"><span class="swatch-role">Primary</span></div>
+    <div class="swatch-info">
+      <div class="swatch-name">Flame Orange</div>
+      <div class="swatch-hex">#E8500A</div>
+      <div class="swatch-desc">Bold, passionate energy. The fire at the heart of the brand — used for CTAs, key highlights, and the iconic flame mark.</div>
+    </div>
+  </div>
+
+  <div class="swatch c2">
+    <div class="swatch-color"><span class="swatch-role">Accent</span></div>
+    <div class="swatch-info">
+      <div class="swatch-name">Ember Gold</div>
+      <div class="swatch-hex">#F5A623</div>
+      <div class="swatch-desc">Warmth and illumination. Reflects glory and light — used for headings, icons, and supporting accent elements.</div>
+    </div>
+  </div>
+
+  <div class="swatch c3">
+    <div class="swatch-color"><span class="swatch-role">Secondary</span></div>
+    <div class="swatch-info">
+      <div class="swatch-name">Sacred Green</div>
+      <div class="swatch-hex">#4A8C2A</div>
+      <div class="swatch-desc">Growth, renewal, and life. Directly drawn from the logo — used for headers, section dividers, and brand consistency.</div>
+    </div>
+  </div>
+
+  <div class="swatch c4">
+    <div class="swatch-color"><span class="swatch-role">Deep</span></div>
+    <div class="swatch-info">
+      <div class="swatch-name">Forest Deep</div>
+      <div class="swatch-hex">#2D5A1B</div>
+      <div class="swatch-desc">Depth and rootedness. Used for backgrounds, footers, and areas requiring gravitas and weight.</div>
+    </div>
+  </div>
+
+  <div class="swatch c5">
+    <div class="swatch-color"><span class="swatch-role">Neutral</span></div>
+    <div class="swatch-info">
+      <div class="swatch-name">Smoke Charcoal</div>
+      <div class="swatch-hex">#2B2B2B</div>
+      <div class="swatch-desc">Authority and strength. Primary dark background — used for body text and dark-mode surfaces.</div>
+    </div>
+  </div>
+
+  <div class="swatch c6">
+    <div class="swatch-color"><span class="swatch-role">Light</span></div>
+    <div class="swatch-info">
+      <div class="swatch-name">Ash White</div>
+      <div class="swatch-hex">#F7F4EE</div>
+      <div class="swatch-desc">Clean, warm purity. A warm off-white for light backgrounds, giving a soft, sacred feel over stark white.</div>
+    </div>
+  </div>
+</div>
+
+<!-- USAGE CARDS -->
+<p class="section-title">Color Usage Guide</p>
+<div class="usage-grid">
+  <div class="usage-card u1">
+    <div class="usage-label">Primary Action</div>
+    <div class="usage-title" style="color:#E8500A">Flame Orange</div>
+    <div class="usage-text">Buttons, links, fire icon, key callouts, donation CTAs, newsletter sign-ups. The most attention-demanding color — use sparingly and intentionally.</div>
+    <div class="usage-dots">
+      <div class="dot" style="background:#E8500A"></div>
+    </div>
+  </div>
+
+  <div class="usage-card u2">
+    <div class="usage-label">Highlights & Headings</div>
+    <div class="usage-title" style="color:#F5A623">Ember Gold</div>
+    <div class="usage-text">Section titles, pull quotes, scripture references, badge backgrounds. Pairs brilliantly with both the deep green and charcoal.</div>
+    <div class="usage-dots">
+      <div class="dot" style="background:#F5A623"></div>
+      <div class="dot" style="background:#2B2B2B"></div>
+    </div>
+  </div>
+
+  <div class="usage-card u3">
+    <div class="usage-label">Brand Foundation</div>
+    <div class="usage-title" style="color:#4A8C2A">Sacred Green</div>
+    <div class="usage-text">Logo, headers, nav bars, brand banners, social media frames. The identity anchor that connects all materials to the logo.</div>
+    <div class="usage-dots">
+      <div class="dot" style="background:#4A8C2A"></div>
+      <div class="dot" style="background:#2D5A1B"></div>
+    </div>
+  </div>
+
+  <div class="usage-card u4">
+    <div class="usage-label">Backgrounds & Text</div>
+    <div class="usage-title" style="color:#c0b090">Ash White + Charcoal</div>
+    <div class="usage-text">Use Ash White for light-mode backgrounds and body text areas. Charcoal for dark surfaces and text on light backgrounds.</div>
+    <div class="usage-dots">
+      <div class="dot" style="background:#F7F4EE"></div>
+      <div class="dot" style="background:#2B2B2B"></div>
+      <div class="dot" style="background:#6B6B6B"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LIVE PREVIEW -->
+<p class="section-title">Live Brand Preview</p>
+<div class="preview">
+  <div class="preview-top">
+    <div class="preview-circle">F2F</div>
+    <div class="preview-text">
+      <h2>Flames to Fire</h2>
+      <p>Devotionals</p>
+    </div>
+  </div>
+  <div class="preview-bottom">
+    <p class="preview-quote">"Fan into flame the gift of God which is in you." <span>— 2 Timothy 1:6</span></p>
+    <button class="cta-btn">Start Today's Devotional</button>
+  </div>
+</div>
+
+<!-- TYPE PAIRINGS -->
+<p class="section-title">Typography on Brand Colors</p>
+<div class="type-box">
+  <div class="type-sample">
+    <h3>On Light Background</h3>
+    <div class="on-light">
+      <div class="heading">Daily <span class="highlight">Devotional</span></div>
+      <p class="body-copy">Let the fire of God's word ignite your heart each morning. Rooted in scripture, grounded in faith.</p>
+    </div>
+  </div>
+  <div class="type-sample">
+    <h3>On Dark Background</h3>
+    <div class="on-dark">
+      <div class="heading">Daily <span class="highlight">Devotional</span></div>
+      <p class="body-copy">Let the fire of God's word ignite your heart each morning. Rooted in scripture, grounded in faith.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<p class="footer-note">Flames to Fire Devotionals · Brand Color System · All rights reserved</p>
+
+</body>
+</html>
