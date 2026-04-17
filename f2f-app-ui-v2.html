@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flames to Fire — App UI Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --flame:#E8500A;
+  --ember:#FFCC00;
+  --green:#25D366;
+  --forest:#128C7E;
+  --char:#1A1A1A;
+  --char2:#242424;
+  --char3:#2E2E2E;
+  --ash:#F7F4EE;
+  --cream:#FDF6E3;
+  --iron:#6B6B6B;
+  --muted:#9A9A9A;
+  --white:#FFFFFF;
+  --phone-w:375px;
+  --phone-h:780px;
+}
+
+body{
+  background:#111;
+  font-family:'DM Sans',sans-serif;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:40px 20px 80px;
+  color:#fff;
+}
+
+/* ── TOP HEADER ── */
+.top-bar{
+  text-align:center;
+  margin-bottom:48px;
+}
+.top-bar .label{
+  font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--ember);margin-bottom:8px;
+}
+.top-bar h1{
+  font-family:'Cinzel',serif;font-size:1.8rem;font-weight:900;
+  background:linear-gradient(135deg,var(--ember),var(--flame));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.top-bar p{font-size:.78rem;color:#555;margin-top:6px;letter-spacing:.1em;text-transform:uppercase;}
+
+/* ── SCREEN NAV ── */
+.nav-wrap{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
+  max-width:900px;margin-bottom:40px;
+}
+.nav-btn{
+  background:#1e1e1e;border:1px solid #333;color:#888;
+  font-family:'DM Sans',sans-serif;font-size:.72rem;
+  padding:7px 14px;border-radius:20px;cursor:pointer;
+  transition:all .2s;letter-spacing:.05em;white-space:nowrap;
+}
+.nav-btn:hover{border-color:var(--ember);color:var(--ember);}
+.nav-btn.active{background:var(--flame);border-color:var(--flame);color:#fff;}
+
+/* ── PHONE SHELL ── */
+.phone-wrap{
+  position:relative;
+  width:var(--phone-w);
+  height:var(--phone-h);
+  flex-shrink:0;
+}
+.phone-shell{
+  width:var(--phone-w);height:var(--phone-h);
+  background:#0a0a0a;
+  border-radius:44px;
+  border:2px solid #2a2a2a;
+  box-shadow:0 0 0 1px #111,0 40px 80px rgba(0,0,0,.9),inset 0 0 0 1px #333;
+  overflow:hidden;
+  position:relative;
+}
+.notch{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:120px;height:34px;
+  background:#0a0a0a;
+  border-radius:0 0 20px 20px;
+  z-index:100;
+}
+.status-bar{
+  position:absolute;top:0;left:0;right:0;height:44px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 22px 0;
+  z-index:99;
+  font-size:.6rem;font-weight:600;letter-spacing:.05em;
+  color:rgba(255,255,255,.8);
+}
+.status-right{display:flex;gap:4px;align-items:center;}
+
+/* ── SCREENS ── */
+.screen{
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+  border-radius:44px;
+}
+.screen.active{display:flex;}
+
+/* ── SCROLL AREA ── */
+.scroll-area{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  scrollbar-width:none;
+  padding-top:44px;
+}
+.scroll-area::-webkit-scrollbar{display:none;}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav{
+  display:flex;
+  background:rgba(20,20,20,.97);
+  backdrop-filter:blur(12px);
+  border-top:1px solid #2a2a2a;
+  padding:8px 0 20px;
+  z-index:50;
+  flex-shrink:0;
+}
+.bn-item{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;gap:3px;cursor:pointer;
+  padding:4px 0;
+}
+.bn-icon{font-size:1.2rem;}
+.bn-label{font-size:.55rem;letter-spacing:.06em;color:#555;font-weight:500;}
+.bn-item.active .bn-label{color:var(--flame);}
+.bn-item.active .bn-icon-wrap{
+  background:rgba(232,80,10,.15);
+  border-radius:12px;padding:4px 12px;
+}
+
+/* ===========================
+   SCREEN 1 — SPLASH / ONBOARDING
+   =========================== */
+#s-splash{
+  background:linear-gradient(160deg,var(--forest) 0%,#111 60%);
+}
+.splash-glow{
+  position:absolute;top:-100px;left:50%;transform:translateX(-50%);
+  width:400px;height:400px;
+  background:radial-gradient(circle,rgba(255,204,0,.25) 0%,transparent 65%);
+  pointer-events:none;
+}
+.splash-content{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:60px 32px 40px;gap:0;
+  position:relative;z-index:1;
+}
+.splash-logo{
+  width:90px;height:90px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;font-size:1.4rem;font-weight:900;
+  color:var(--ember);margin-bottom:24px;
+  box-shadow:0 0 40px rgba(255,204,0,.3);
+}
+.splash-title{
+  font-family:'Cinzel',serif;font-size:2rem;font-weight:900;
+  text-align:center;line-height:1.15;margin-bottom:10px;
+  color:#fff;
+}
+.splash-title span{color:var(--ember);}
+.splash-sub{
+  font-family:'Crimson Pro',serif;font-style:italic;
+  font-size:1rem;color:rgba(255,255,255,.55);
+  text-align:center;margin-bottom:48px;
+}
+.splash-verse{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;padding:16px 20px;
+  text-align:center;margin-bottom:40px;
+  width:100%;
+}
+.splash-verse p{
+  font-family:'Crimson Pro',serif;font-style:italic;
+  font-size:.92rem;color:rgba(255,255,255,.8);line-height:1.6;
+}
+.splash-verse span{font-size:.72rem;color:var(--ember);display:block;margin-top:6px;font-style:normal;}
+.btn-primary{
+  width:100%;padding:16px;
+  background:linear-gradient(135deg,var(--flame),#c0392b);
+  border:none;border-radius:14px;
+  font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;
+  color:#fff;cursor:pointer;letter-spacing:.06em;
+  box-shadow:0 8px 24px rgba(232,80,10,.4);
+  margin-bottom:12px;
+}
+.btn-secondary{
+  width:100%;padding:14px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:14px;
+  font-family:'DM Sans',sans-serif;font-size:.9rem;
+  color:rgba(255,255,255,.7);cursor:pointer;
+}
+
+/* ===========================
+   SCREEN 2 — ONBOARDING QUIZ
+   =========================== */
+#s-onboard{background:#111;}
+.onboard-header{
+  padding:54px 24px 24px;
+}
+.progress-bar{
+  height:3px;background:#2a2a2a;border-radius:2px;margin-bottom:24px;
+}
+.progress-fill{
+  height:100%;background:linear-gradient(90deg,var(--ember),var(--flame));
+  border-radius:2px;width:33%;transition:width .4s;
+}
+.onboard-q{
+  font-family:'Cinzel',serif;font-size:1.15rem;font-weight:700;
+  color:#fff;line-height:1.4;margin-bottom:6px;
+}
+.onboard-sub{font-size:.78rem;color:var(--muted);margin-bottom:28px;}
+.quiz-option{
+  background:#1e1e1e;border:1.5px solid #333;
+  border-radius:14px;padding:14px 18px;margin-bottom:10px;
+  cursor:pointer;display:flex;align-items:center;gap:14px;
+  transition:all .2s;
+}
+.quiz-option:hover,.quiz-option.sel{
+  border-color:var(--ember);background:rgba(255,204,0,.08);
+}
+.quiz-option.sel .q-dot{background:var(--ember);}
+.q-dot{
+  width:18px;height:18px;border-radius:50%;
+  border:2px solid #444;flex-shrink:0;transition:all .2s;
+}
+.q-label{font-size:.85rem;color:#ccc;}
+.q-emoji{font-size:1.1rem;margin-left:auto;}
+
+/* ===========================
+   SCREEN 3 — HOME
+   =========================== */
+#s-home{background:var(--char);}
+.home-header{
+  padding:54px 20px 0;
+  background:linear-gradient(180deg,rgba(18,140,126,.9) 0%,transparent 100%);
+}
+.home-greeting{
+  font-size:.72rem;color:rgba(255,255,255,.5);
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;
+}
+.home-name{
+  font-family:'Cinzel',serif;font-size:1.3rem;font-weight:700;color:#fff;
+  margin-bottom:16px;
+}
+.home-streak{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(232,80,10,.15);border:1px solid rgba(232,80,10,.3);
+  border-radius:20px;padding:6px 14px;display:inline-flex;margin-bottom:20px;
+}
+.home-streak span{font-size:.78rem;color:var(--ember);font-weight:600;}
+.section-label{
+  font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:12px;padding:0 20px;
+}
+
+/* Today's card */
+.today-card{
+  margin:0 20px 24px;
+  background:linear-gradient(135deg,var(--forest),#1e3d10);
+  border-radius:20px;overflow:hidden;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+  position:relative;
+}
+.today-card::before{
+  content:'';position:absolute;right:-40px;top:-40px;
+  width:180px;height:180px;
+  background:radial-gradient(circle,rgba(255,204,0,.2),transparent 65%);
+  pointer-events:none;
+}
+.today-thumb{
+  width:100%;height:160px;object-fit:cover;
+  background:linear-gradient(135deg,#1a3d0a,#0d2205);
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;position:relative;
+}
+.play-overlay{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.3);
+}
+.play-btn{
+  width:56px;height:56px;border-radius:50%;
+  background:rgba(255,255,255,.9);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;
+  box-shadow:0 4px 20px rgba(0,0,0,.4);
+}
+.today-body{padding:16px;}
+.today-date{font-size:.62rem;color:rgba(255,255,255,.45);letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px;}
+.today-title{font-family:'Cinzel',serif;font-size:1rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:8px;}
+.today-verse{
+  font-family:'Crimson Pro',serif;font-style:italic;
+  font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.5;
+  border-left:2px solid var(--ember);padding-left:10px;margin-bottom:12px;
+}
+.today-meta{display:flex;gap:12px;}
+.meta-pill{
+  background:rgba(255,255,255,.08);border-radius:20px;
+  padding:4px 10px;font-size:.62rem;color:rgba(255,255,255,.5);
+}
+
+/* Horizontal scroll rows */
+.hscroll{
+  display:flex;gap:12px;overflow-x:auto;padding:0 20px 4px;
+  scrollbar-width:none;
+}
+.hscroll::-webkit-scrollbar{display:none;}
+
+.series-card{
+  flex-shrink:0;width:140px;
+  background:var(--char2);border-radius:14px;overflow:hidden;
+}
+.series-thumb{
+  height:80px;
+  display:flex;align-items:center;justify-content:center;font-size:1.8rem;
+}
+.series-info{padding:8px 10px;}
+.series-title{font-size:.72rem;font-weight:600;color:#ddd;line-height:1.3;margin-bottom:2px;}
+.series-count{font-size:.6rem;color:var(--muted);}
+
+.verse-card{
+  flex-shrink:0;width:240px;
+  background:var(--char2);border-radius:14px;padding:14px;
+}
+.verse-text{
+  font-family:'Crimson Pro',serif;font-style:italic;
+  font-size:.85rem;color:#ddd;line-height:1.6;margin-bottom:8px;
+}
+.verse-ref{font-size:.65rem;color:var(--ember);font-weight:600;}
+
+/* ===========================
+   SCREEN 4 — DEVOTIONAL DETAIL
+   =========================== */
+#s-devotional{background:var(--char);}
+.dev-header{
+  padding:54px 20px 16px;
+  background:linear-gradient(180deg,var(--forest),transparent);
+}
+.back-btn{
+  display:flex;align-items:center;gap:6px;
+  font-size:.72rem;color:rgba(255,255,255,.5);margin-bottom:16px;cursor:pointer;
+}
+.dev-date{font-size:.62rem;color:var(--ember);letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px;}
+.dev-title{
+  font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;
+  color:#fff;line-height:1.3;margin-bottom:12px;
+}
+.dev-actions{display:flex;gap:8px;margin-bottom:4px;}
+.action-pill{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  border-radius:20px;padding:6px 12px;
+  font-size:.65rem;color:rgba(255,255,255,.6);cursor:pointer;
+  display:flex;align-items:center;gap:5px;
+}
+.video-frame{
+  margin:0 20px 20px;
+  background:#000;border-radius:16px;overflow:hidden;
+  aspect-ratio:16/9;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.video-frame-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,#0d2a0a,#1a1a1a);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;
+}
+.video-play-big{
+  width:64px;height:64px;border-radius:50%;
+  background:rgba(255,255,255,.9);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;
+  box-shadow:0 4px 24px rgba(0,0,0,.5);
+}
+.video-label{font-size:.65rem;color:rgba(255,255,255,.4);letter-spacing:.1em;}
+.speed-row{display:flex;gap:6px;position:absolute;bottom:10px;right:10px;}
+.speed-pill{
+  background:rgba(0,0,0,.6);backdrop-filter:blur(4px);
+  border-radius:20px;padding:3px 8px;font-size:.58rem;color:rgba(255,255,255,.6);cursor:pointer;
+}
+.speed-pill.sel{background:var(--flame);color:#fff;}
+.dev-section{padding:0 20px;margin-bottom:20px;}
+.dev-section-title{
+  font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.dev-section-title::after{content:'';flex:1;height:1px;background:#2a2a2a;}
+.scripture-box{
+  background:var(--char2);border-radius:14px;padding:16px;
+  border-left:3px solid var(--ember);
+}
+.scripture-text{
+  font-family:'Crimson Pro',serif;font-size:1.05rem;line-height:1.7;
+  color:#e0d8cc;margin-bottom:8px;
+}
+.scripture-ref{font-size:.7rem;color:var(--ember);font-weight:600;}
+.reflection-text{
+  font-family:'Crimson Pro',serif;font-size:.92rem;line-height:1.75;
+  color:#bbb;
+}
+.prayer-box{
+  background:linear-gradient(135deg,rgba(37,211,102,.15),rgba(18,140,126,.1));
+  border:1px solid rgba(37,211,102,.25);
+  border-radius:14px;padding:16px;
+}
+.prayer-text{
+  font-family:'Crimson Pro',serif;font-style:italic;
+  font-size:.9rem;line-height:1.7;color:#bbb;
+}
+.reaction-row{
+  display:flex;gap:8px;padding:0 20px;margin-bottom:20px;
+}
+.reaction-btn{
+  flex:1;background:var(--char2);border-radius:12px;
+  padding:10px;text-align:center;cursor:pointer;
+  border:1px solid transparent;transition:all .2s;
+}
+.reaction-btn:hover{border-color:var(--ember);}
+.reaction-btn .r-emoji{font-size:1.1rem;display:block;margin-bottom:2px;}
+.reaction-btn .r-label{font-size:.55rem;color:var(--muted);}
+
+/* ===========================
+   SCREEN 5 — BIBLE
+   =========================== */
+#s-bible{background:var(--char);}
+.bible-header{
+  padding:54px 20px 16px;
+  background:linear-gradient(180deg,rgba(18,140,126,.8),transparent);
+}
+.bible-header h2{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:12px;}
+.search-box{
+  background:var(--char2);border-radius:12px;
+  display:flex;align-items:center;padding:10px 14px;gap:10px;
+  border:1px solid #333;margin-bottom:12px;
+}
+.search-box input{
+  background:none;border:none;outline:none;
+  font-family:'DM Sans',sans-serif;font-size:.82rem;color:#ccc;flex:1;
+}
+.search-box input::placeholder{color:#444;}
+.translation-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;}
+.translation-row::-webkit-scrollbar{display:none;}
+.trans-pill{
+  flex-shrink:0;background:var(--char2);border:1px solid #333;
+  border-radius:20px;padding:5px 12px;font-size:.65rem;color:#888;cursor:pointer;
+}
+.trans-pill.sel{background:var(--green);border-color:var(--green);color:#fff;}
+.bible-book-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+  padding:16px 20px;
+}
+.bible-book{
+  background:var(--char2);border-radius:12px;padding:10px;
+  text-align:center;cursor:pointer;border:1px solid transparent;
+  transition:all .2s;
+}
+.bible-book:hover{border-color:var(--ember);}
+.bible-book .bk-name{font-size:.72rem;font-weight:600;color:#ccc;margin-bottom:2px;}
+.bible-book .bk-count{font-size:.58rem;color:var(--muted);}
+.bible-passage{padding:0 20px 20px;}
+.passage-header{
+  font-family:'Cinzel',serif;font-size:1rem;font-weight:700;
+  color:var(--ember);margin-bottom:12px;
+}
+.verse-line{
+  font-family:'Crimson Pro',serif;font-size:.92rem;line-height:1.85;
+  color:#ccc;cursor:pointer;padding:2px 0;
+  transition:color .15s;
+}
+.verse-line:hover{color:#fff;}
+.verse-line .vnum{font-size:.65rem;color:var(--muted);margin-right:5px;vertical-align:super;}
+.verse-line.highlighted{background:rgba(255,204,0,.15);border-radius:4px;padding:2px 4px;color:#fff;}
+
+/* ===========================
+   SCREEN 6 — JOURNAL
+   =========================== */
+#s-journal{background:var(--char);}
+.journal-header{padding:54px 20px 16px;}
+.journal-header h2{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:4px;}
+.journal-header p{font-size:.72rem;color:var(--muted);}
+.journal-fab{
+  position:absolute;bottom:80px;right:20px;
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--flame),#c0392b);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;cursor:pointer;z-index:20;
+  box-shadow:0 6px 20px rgba(232,80,10,.5);
+}
+.cal-row{
+  display:flex;gap:6px;overflow-x:auto;padding:0 20px 16px;scrollbar-width:none;
+}
+.cal-row::-webkit-scrollbar{display:none;}
+.cal-day{
+  flex-shrink:0;width:48px;
+  background:var(--char2);border-radius:12px;
+  padding:8px 4px;text-align:center;cursor:pointer;
+  border:1.5px solid transparent;
+}
+.cal-day.today{border-color:var(--flame);}
+.cal-day.has-entry .cd-dot{background:var(--green);}
+.cal-day .cd-name{font-size:.55rem;color:var(--muted);margin-bottom:4px;}
+.cal-day .cd-num{font-size:.9rem;font-weight:700;color:#ccc;}
+.cd-dot{width:5px;height:5px;border-radius:50%;background:transparent;margin:3px auto 0;}
+
+.journal-entry{
+  margin:0 20px 14px;
+  background:var(--char2);border-radius:16px;padding:16px;
+  cursor:pointer;border:1px solid transparent;transition:all .2s;
+}
+.journal-entry:hover{border-color:#333;}
+.je-date{font-size:.62rem;color:var(--muted);margin-bottom:4px;}
+.je-title{font-size:.9rem;font-weight:600;color:#ddd;margin-bottom:6px;}
+.je-preview{font-family:'Crimson Pro',serif;font-size:.82rem;color:#888;line-height:1.5;}
+.je-tags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+.je-tag{
+  background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.25);
+  border-radius:20px;padding:2px 8px;font-size:.58rem;color:var(--green);
+}
+
+/* ===========================
+   SCREEN 7 — PRAYER
+   =========================== */
+#s-prayer{background:var(--char);}
+.prayer-tabs{
+  display:flex;background:var(--char2);
+  margin:0 20px;border-radius:12px;padding:4px;gap:4px;margin-bottom:16px;
+}
+.prayer-tab{
+  flex:1;padding:8px;border-radius:9px;text-align:center;
+  font-size:.72rem;font-weight:500;color:var(--muted);cursor:pointer;
+  transition:all .2s;
+}
+.prayer-tab.active{background:var(--char3);color:#fff;}
+.prayer-item{
+  margin:0 20px 12px;
+  background:var(--char2);border-radius:14px;padding:14px 16px;
+  display:flex;align-items:flex-start;gap:12px;
+}
+.prayer-check{
+  width:22px;height:22px;border-radius:50%;
+  border:2px solid #444;flex-shrink:0;margin-top:2px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;cursor:pointer;
+}
+.prayer-check.answered{background:var(--green);border-color:var(--green);color:#fff;}
+.prayer-info{flex:1;}
+.prayer-name{font-size:.85rem;font-weight:500;color:#ddd;margin-bottom:3px;}
+.prayer-cat{font-size:.62rem;color:var(--muted);}
+.prayer-count{font-size:.62rem;color:var(--iron);margin-left:auto;}
+
+.prayer-wall-item{
+  margin:0 20px 12px;
+  background:var(--char2);border-radius:14px;padding:14px 16px;
+}
+.pw-user{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.pw-avatar{
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,var(--green),var(--forest));
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:700;color:#fff;
+}
+.pw-name{font-size:.75rem;font-weight:600;color:#ccc;}
+.pw-anon{font-size:.72rem;color:var(--muted);}
+.pw-text{font-family:'Crimson Pro',serif;font-size:.88rem;line-height:1.6;color:#aaa;margin-bottom:10px;}
+.pw-actions{display:flex;gap:12px;}
+.pw-action{font-size:.65rem;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:4px;}
+.pw-action.praying{color:var(--flame);}
+
+/* ===========================
+   SCREEN 8 — GIVING
+   =========================== */
+#s-giving{background:var(--char);}
+.giving-hero{
+  background:linear-gradient(160deg,var(--forest),#111);
+  padding:54px 20px 28px;position:relative;overflow:hidden;
+}
+.giving-hero::before{
+  content:'';position:absolute;right:-50px;top:-50px;
+  width:200px;height:200px;
+  background:radial-gradient(circle,rgba(255,204,0,.2),transparent 65%);
+}
+.giving-hero h2{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:6px;}
+.giving-hero p{font-size:.78rem;color:rgba(255,255,255,.5);margin-bottom:20px;}
+.campaign-box{
+  background:rgba(255,255,255,.07);border-radius:14px;padding:14px;
+}
+.camp-title{font-size:.8rem;font-weight:600;color:#ddd;margin-bottom:4px;}
+.camp-sub{font-size:.65rem;color:var(--muted);margin-bottom:10px;}
+.camp-bar{height:6px;background:rgba(255,255,255,.1);border-radius:3px;margin-bottom:6px;}
+.camp-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--ember));border-radius:3px;width:63%;}
+.camp-stats{display:flex;justify-content:space-between;}
+.camp-stat{font-size:.62rem;color:var(--muted);}
+.camp-stat span{color:var(--ember);font-weight:700;}
+
+.amount-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  padding:16px 20px;
+}
+.amount-btn{
+  background:var(--char2);border:1.5px solid #333;
+  border-radius:12px;padding:12px;text-align:center;cursor:pointer;
+  transition:all .2s;
+}
+.amount-btn:hover,.amount-btn.sel{background:rgba(232,80,10,.1);border-color:var(--flame);}
+.amount-btn .amt-currency{font-size:.6rem;color:var(--muted);}
+.amount-btn .amt-num{font-size:1rem;font-weight:700;color:#ddd;}
+
+.fund-list{padding:0 20px;}
+.fund-item{
+  background:var(--char2);border-radius:12px;padding:12px 14px;
+  margin-bottom:8px;display:flex;align-items:center;gap:12px;cursor:pointer;
+  border:1.5px solid transparent;transition:all .2s;
+}
+.fund-item.sel{border-color:var(--green);}
+.fund-icon{font-size:1.2rem;}
+.fund-name{font-size:.82rem;font-weight:500;color:#ccc;flex:1;}
+.fund-check{font-size:.8rem;color:var(--green);}
+
+/* ===========================
+   SCREEN 9 — COMMUNITY
+   =========================== */
+#s-community{background:var(--char);}
+.community-header{padding:54px 20px 16px;}
+.community-header h2{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:12px;}
+.comm-tabs{display:flex;gap:16px;border-bottom:1px solid #2a2a2a;padding-bottom:0;margin:0 20px 16px;}
+.comm-tab{
+  font-size:.75rem;font-weight:500;color:var(--muted);
+  padding-bottom:10px;cursor:pointer;border-bottom:2px solid transparent;
+  transition:all .2s;
+}
+.comm-tab.active{color:var(--ember);border-bottom-color:var(--ember);}
+.comment-item{
+  margin:0 20px 16px;
+  display:flex;gap:10px;
+}
+.c-avatar{
+  width:32px;height:32px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;font-weight:700;color:#fff;
+}
+.c-body{flex:1;}
+.c-name{font-size:.72rem;font-weight:600;color:#ddd;margin-bottom:4px;}
+.c-text{font-family:'Crimson Pro',serif;font-size:.85rem;line-height:1.5;color:#999;}
+.c-actions{display:flex;gap:12px;margin-top:6px;}
+.c-action{font-size:.62rem;color:#555;cursor:pointer;}
+.c-action.liked{color:var(--flame);}
+
+.circle-card{
+  margin:0 20px 12px;
+  background:var(--char2);border-radius:16px;padding:16px;
+  display:flex;align-items:center;gap:14px;cursor:pointer;
+  border:1px solid transparent;transition:all .2s;
+}
+.circle-card:hover{border-color:#444;}
+.circle-icon{
+  width:44px;height:44px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+  flex-shrink:0;
+}
+.circle-info{flex:1;}
+.circle-name{font-size:.85rem;font-weight:600;color:#ddd;margin-bottom:3px;}
+.circle-members{font-size:.65rem;color:var(--muted);}
+.circle-badge{
+  background:var(--flame);border-radius:20px;padding:2px 8px;
+  font-size:.6rem;color:#fff;font-weight:700;
+}
+
+/* ===========================
+   SCREEN 10 — PROFILE
+   =========================== */
+#s-profile{background:var(--char);}
+.profile-hero{
+  background:linear-gradient(180deg,var(--forest),transparent);
+  padding:54px 20px 24px;text-align:center;
+}
+.profile-avatar{
+  width:80px;height:80px;border-radius:50%;
+  background:linear-gradient(135deg,var(--green),var(--ember));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;font-size:1.5rem;font-weight:700;color:#fff;
+  margin:0 auto 14px;
+  border:3px solid rgba(255,255,255,.1);
+}
+.profile-name{font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:4px;}
+.profile-church{font-size:.72rem;color:var(--muted);margin-bottom:16px;}
+.profile-verse{
+  font-family:'Crimson Pro',serif;font-style:italic;
+  font-size:.82rem;color:rgba(255,255,255,.5);
+  background:rgba(255,255,255,.05);border-radius:10px;padding:8px 12px;
+  display:inline-block;max-width:260px;
+}
+.stats-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  padding:0 20px;margin-bottom:24px;
+}
+.stat-box{
+  background:var(--char2);border-radius:14px;padding:12px;text-align:center;
+}
+.stat-num{font-family:'Cinzel',serif;font-size:1.4rem;font-weight:700;color:var(--ember);}
+.stat-label{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;}
+
+.badge-row{display:flex;gap:10px;overflow-x:auto;padding:0 20px 16px;scrollbar-width:none;}
+.badge-row::-webkit-scrollbar{display:none;}
+.badge{
+  flex-shrink:0;
+  background:var(--char2);border-radius:14px;padding:12px;
+  text-align:center;width:70px;
+}
+.badge .b-icon{font-size:1.4rem;display:block;margin-bottom:4px;}
+.badge .b-label{font-size:.55rem;color:var(--muted);}
+.badge.earned .b-label{color:var(--ember);}
+.badge.earned{border:1px solid rgba(255,204,0,.3);}
+
+.settings-list{padding:0 20px;}
+.settings-item{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 0;border-bottom:1px solid #1e1e1e;cursor:pointer;
+}
+.settings-item:last-child{border-bottom:none;}
+.si-icon{
+  width:34px;height:34px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;
+  background:var(--char2);
+}
+.si-label{font-size:.82rem;color:#ccc;flex:1;}
+.si-arrow{font-size:.7rem;color:#444;}
+.si-toggle{
+  width:40px;height:22px;border-radius:11px;
+  background:var(--green);position:relative;cursor:pointer;
+}
+.si-toggle::after{
+  content:'';position:absolute;top:3px;right:3px;
+  width:16px;height:16px;border-radius:50%;background:#fff;
+}
+
+/* ===========================
+   SCREEN 11 — CONTENT LIBRARY
+   =========================== */
+#s-library{background:var(--char);}
+.lib-header{padding:54px 20px 16px;}
+.lib-header h2{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:12px;}
+.filter-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
+.filter-row::-webkit-scrollbar{display:none;}
+.filter-pill{
+  flex-shrink:0;background:var(--char2);border:1px solid #333;
+  border-radius:20px;padding:6px 14px;font-size:.7rem;color:#888;cursor:pointer;
+}
+.filter-pill.sel{background:var(--green);border-color:var(--green);color:#fff;}
+
+.video-list-item{
+  margin:0 20px 14px;
+  background:var(--char2);border-radius:16px;overflow:hidden;
+  display:flex;cursor:pointer;border:1px solid transparent;transition:all .2s;
+}
+.video-list-item:hover{border-color:#333;}
+.vli-thumb{
+  width:100px;height:72px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+  position:relative;
+}
+.vli-play{
+  position:absolute;inset:0;background:rgba(0,0,0,.4);
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;
+}
+.vli-body{padding:10px 12px;flex:1;}
+.vli-title{font-size:.8rem;font-weight:600;color:#ddd;line-height:1.3;margin-bottom:4px;}
+.vli-meta{font-size:.62rem;color:var(--muted);display:flex;gap:8px;}
+
+/* ===========================
+   SCREEN 12 — STREAKS & STATS
+   =========================== */
+#s-streaks{background:var(--char);}
+.streak-hero{
+  background:linear-gradient(160deg,#2a1a00,var(--char));
+  padding:54px 20px 28px;text-align:center;
+}
+.streak-fire{font-size:3rem;display:block;margin-bottom:8px;}
+.streak-num{
+  font-family:'Cinzel',serif;font-size:3.5rem;font-weight:900;
+  color:var(--ember);line-height:1;margin-bottom:4px;
+}
+.streak-label{font-size:.72rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:20px;}
+.streak-grace{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,204,0,.1);border:1px solid rgba(255,204,0,.2);
+  border-radius:20px;padding:6px 14px;font-size:.7rem;color:var(--ember);
+}
+.milestone-row{display:flex;gap:10px;overflow-x:auto;padding:16px 20px;scrollbar-width:none;}
+.milestone-row::-webkit-scrollbar{display:none;}
+.milestone{
+  flex-shrink:0;
+  background:var(--char2);border-radius:14px;padding:12px;
+  text-align:center;width:72px;border:1.5px solid transparent;
+}
+.milestone.done{border-color:var(--ember);}
+.milestone.done .ms-icon{filter:none;}
+.milestone .ms-icon{font-size:1.4rem;display:block;margin-bottom:4px;filter:grayscale(1);}
+.milestone .ms-day{font-size:.65rem;font-weight:700;color:var(--ember);}
+.milestone .ms-label{font-size:.52rem;color:var(--muted);}
+
+.personal-stats{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:10px;
+  padding:0 20px 20px;
+}
+.ps-card{
+  background:var(--char2);border-radius:14px;padding:14px;
+}
+.ps-icon{font-size:1.2rem;display:block;margin-bottom:6px;}
+.ps-num{font-family:'Cinzel',serif;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:2px;}
+.ps-label{font-size:.62rem;color:var(--muted);}
+
+/* ===========================
+   PAGE INDICATOR
+   =========================== */
+.screen-indicator{
+  margin-top:28px;
+  font-size:.65rem;color:#333;
+  text-align:center;letter-spacing:.1em;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media(max-width:460px){
+  :root{--phone-w:340px;--phone-h:700px;}
+  .nav-wrap{gap:6px;}
+  .nav-btn{font-size:.65rem;padding:6px 11px;}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <p class="label">UI/UX Prototype</p>
+  <h1>Flames to Fire Devotionals</h1>
+  <p>Full App Screen Mockups · Flutter Design Reference</p>
+</div>
+
+<!-- SCREEN NAV -->
+<div class="nav-wrap">
+  <button class="nav-btn active" onclick="show('s-splash',this)">🚀 Splash</button>
+  <button class="nav-btn" onclick="show('s-onboard',this)">📋 Onboarding</button>
+  <button class="nav-btn" onclick="show('s-home',this)">🏠 Home</button>
+  <button class="nav-btn" onclick="show('s-devotional',this)">🔥 Devotional</button>
+  <button class="nav-btn" onclick="show('s-library',this)">📚 Library</button>
+  <button class="nav-btn" onclick="show('s-bible',this)">📖 Bible</button>
+  <button class="nav-btn" onclick="show('s-journal',this)">✍️ Journal</button>
+  <button class="nav-btn" onclick="show('s-prayer',this)">🙏 Prayer</button>
+  <button class="nav-btn" onclick="show('s-giving',this)">💛 Giving</button>
+  <button class="nav-btn" onclick="show('s-community',this)">👥 Community</button>
+  <button class="nav-btn" onclick="show('s-streaks',this)">🏆 Streaks</button>
+  <button class="nav-btn" onclick="show('s-profile',this)">👤 Profile</button>
+</div>
+
+<!-- PHONE -->
+<div class="phone-wrap">
+<div class="phone-shell">
+  <div class="notch"></div>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar">
+    <span>9:41</span>
+    <div class="status-right">
+      <span>●●●</span><span>WiFi</span><span>🔋</span>
+    </div>
+  </div>
+
+  <!-- ══ SPLASH ══ -->
+  <div class="screen active" id="s-splash">
+    <div class="splash-glow"></div>
+    <div class="splash-content">
+      <div class="splash-logo">F2F</div>
+      <div class="splash-title">Flames to <span>Fire</span></div>
+      <div class="splash-sub">Daily Devotionals for a burning faith</div>
+      <div class="splash-verse">
+        <p>"Fan into flame the gift of God which is in you."</p>
+        <span>— 2 Timothy 1:6</span>
+      </div>
+      <button class="btn-primary" onclick="show('s-onboard',null)">Get Started 🔥</button>
+      <button class="btn-secondary">I already have an account</button>
+    </div>
+  </div>
+
+  <!-- ══ ONBOARDING ══ -->
+  <div class="screen" id="s-onboard">
+    <div class="scroll-area">
+      <div class="onboard-header">
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+        <div class="onboard-q">What best describes your faith journey?</div>
+        <div class="onboard-sub">We'll personalise your devotionals for you</div>
+        <div class="quiz-option sel" onclick="selOpt(this)"><div class="q-dot"></div><span class="q-label">New believer, still learning</span><span class="q-emoji">🌱</span></div>
+        <div class="quiz-option" onclick="selOpt(this)"><div class="q-dot"></div><span class="q-label">Growing in my faith</span><span class="q-emoji">🌿</span></div>
+        <div class="quiz-option" onclick="selOpt(this)"><div class="q-dot"></div><span class="q-label">Mature believer, going deeper</span><span class="q-emoji">🔥</span></div>
+        <div class="quiz-option" onclick="selOpt(this)"><div class="q-dot"></div><span class="q-label">Church leader / minister</span><span class="q-emoji">✝️</span></div>
+      </div>
+      <div style="padding:0 24px 20px;">
+        <div class="onboard-q" style="margin-top:20px;">Topics you care about most</div>
+        <div class="onboard-sub">Select all that apply</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <div class="quiz-option sel" style="width:auto;padding:8px 14px;" onclick="this.classList.toggle('sel')"><span class="q-label">Faith & Trust</span></div>
+          <div class="quiz-option" style="width:auto;padding:8px 14px;" onclick="this.classList.toggle('sel')"><span class="q-label">Prayer</span></div>
+          <div class="quiz-option sel" style="width:auto;padding:8px 14px;" onclick="this.classList.toggle('sel')"><span class="q-label">Purpose</span></div>
+          <div class="quiz-option" style="width:auto;padding:8px 14px;" onclick="this.classList.toggle('sel')"><span class="q-label">Marriage</span></div>
+          <div class="quiz-option" style="width:auto;padding:8px 14px;" onclick="this.classList.toggle('sel')"><span class="q-label">Healing</span></div>
+          <div class="quiz-option sel" style="width:auto;padding:8px 14px;" onclick="this.classList.toggle('sel')"><span class="q-label">Courage</span></div>
+          <div class="quiz-option" style="width:auto;padding:8px 14px;" onclick="this.classList.toggle('sel')"><span class="q-label">Financial Wisdom</span></div>
+          <div class="quiz-option" style="width:auto;padding:8px 14px;" onclick="this.classList.toggle('sel')"><span class="q-label">Family</span></div>
+        </div>
+        <div style="height:24px;"></div>
+        <button class="btn-primary" onclick="show('s-home',null)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ HOME ══ -->
+  <div class="screen" id="s-home">
+    <div class="scroll-area">
+      <div class="home-header">
+        <div class="home-greeting">Good Morning</div>
+        <div class="home-name">Chukwuemeka 👋</div>
+        <div class="home-streak">🔥 <span>14-day streak — Keep it burning!</span></div>
+      </div>
+
+      <div class="section-label" style="padding-top:20px;">Today's Devotional</div>
+      <div class="today-card" onclick="show('s-devotional',null)">
+        <div class="today-thumb" style="background:linear-gradient(135deg,#0d3d0a,#1a3318);">
+          <span style="font-size:3rem;">🎥</span>
+          <div class="play-overlay"><div class="play-btn">▶</div></div>
+        </div>
+        <div class="today-body">
+          <div class="today-date">April 14, 2026 · Day 14</div>
+          <div class="today-title">Walking in God's Perfect Timing</div>
+          <div class="today-verse">"For I know the plans I have for you…" — Jeremiah 29:11</div>
+          <div class="today-meta">
+            <div class="meta-pill">⏱ 5 min read</div>
+            <div class="meta-pill">🎬 12 min video</div>
+            <div class="meta-pill">📖 NIV</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label">Featured Series</div>
+      <div class="hscroll" style="margin-bottom:24px;">
+        <div class="series-card" onclick="show('s-library',null)">
+          <div class="series-thumb" style="background:linear-gradient(135deg,#1a3d10,#0d2a00);">🔥</div>
+          <div class="series-info"><div class="series-title">Unshakeable Faith</div><div class="series-count">12 videos</div></div>
+        </div>
+        <div class="series-card">
+          <div class="series-thumb" style="background:linear-gradient(135deg,#2a1a00,#3d2800);">🙏</div>
+          <div class="series-info"><div class="series-title">Power of Prayer</div><div class="series-count">8 videos</div></div>
+        </div>
+        <div class="series-card">
+          <div class="series-thumb" style="background:linear-gradient(135deg,#001a3d,#002855);">💑</div>
+          <div class="series-info"><div class="series-title">Marriage God's Way</div><div class="series-count">10 videos</div></div>
+        </div>
+        <div class="series-card">
+          <div class="series-thumb" style="background:linear-gradient(135deg,#1a001a,#2d0033);">✨</div>
+          <div class="series-info"><div class="series-title">Walking in Purpose</div><div class="series-count">15 videos</div></div>
+        </div>
+      </div>
+
+      <div class="section-label">Verse of the Day</div>
+      <div class="hscroll" style="margin-bottom:24px;">
+        <div class="verse-card" onclick="show('s-bible',null)">
+          <div class="verse-text">"Trust in the Lord with all your heart and lean not on your own understanding."</div>
+          <div class="verse-ref">Proverbs 3:5 · NIV</div>
+        </div>
+        <div class="verse-card">
+          <div class="verse-text">"I can do all things through Christ who strengthens me."</div>
+          <div class="verse-ref">Philippians 4:13 · NKJV</div>
+        </div>
+      </div>
+
+      <div class="section-label">Quick Actions</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 20px 100px;">
+        <div style="background:#1e1e1e;border-radius:14px;padding:14px;cursor:pointer;" onclick="show('s-journal',null)">
+          <div style="font-size:1.4rem;margin-bottom:6px;">✍️</div>
+          <div style="font-size:.78rem;font-weight:600;color:#ddd;">Write Journal</div>
+          <div style="font-size:.62rem;color:#555;margin-top:2px;">3 entries this week</div>
+        </div>
+        <div style="background:#1e1e1e;border-radius:14px;padding:14px;cursor:pointer;" onclick="show('s-prayer',null)">
+          <div style="font-size:1.4rem;margin-bottom:6px;">🙏</div>
+          <div style="font-size:.78rem;font-weight:600;color:#ddd;">Prayer List</div>
+          <div style="font-size:.62rem;color:#555;margin-top:2px;">5 active requests</div>
+        </div>
+        <div style="background:#1e1e1e;border-radius:14px;padding:14px;cursor:pointer;" onclick="show('s-giving',null)">
+          <div style="font-size:1.4rem;margin-bottom:6px;">💛</div>
+          <div style="font-size:.78rem;font-weight:600;color:#ddd;">Give Today</div>
+          <div style="font-size:.62rem;color:#555;margin-top:2px;">Blessed by today?</div>
+        </div>
+        <div style="background:#1e1e1e;border-radius:14px;padding:14px;cursor:pointer;" onclick="show('s-community',null)">
+          <div style="font-size:1.4rem;margin-bottom:6px;">👥</div>
+          <div style="font-size:.78rem;font-weight:600;color:#ddd;">Community</div>
+          <div style="font-size:.62rem;color:#555;margin-top:2px;">12 new reactions</div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="bn-item active" onclick="show('s-home',null)"><div class="bn-icon-wrap"><span class="bn-icon">🏠</span></div><span class="bn-label">Home</span></div>
+      <div class="bn-item" onclick="show('s-library',null)"><span class="bn-icon">📚</span><span class="bn-label">Library</span></div>
+      <div class="bn-item" onclick="show('s-bible',null)"><span class="bn-icon">📖</span><span class="bn-label">Bible</span></div>
+      <div class="bn-item" onclick="show('s-community',null)"><span class="bn-icon">👥</span><span class="bn-label">Community</span></div>
+      <div class="bn-item" onclick="show('s-profile',null)"><span class="bn-icon">👤</span><span class="bn-label">Profile</span></div>
+    </div>
+  </div>
+
+  <!-- ══ DEVOTIONAL DETAIL ══ -->
+  <div class="screen" id="s-devotional">
+    <div class="scroll-area">
+      <div class="dev-header">
+        <div class="back-btn" onclick="show('s-home',null)">← Back</div>
+        <div class="dev-date">April 14, 2026</div>
+        <div class="dev-title">Walking in God's Perfect Timing</div>
+        <div class="dev-actions">
+          <div class="action-pill">🔊 Listen</div>
+          <div class="action-pill">📤 Share</div>
+          <div class="action-pill">🔖 Save</div>
+          <div class="action-pill">⬇️ Offline</div>
+        </div>
+      </div>
+
+      <div class="video-frame" style="margin:0 20px 20px;">
+        <div class="video-frame-bg">
+          <div class="video-play-big">▶</div>
+          <span class="video-label">TAP TO PLAY · 12:34</span>
+          <div class="speed-row">
+            <div class="speed-pill">0.75x</div>
+            <div class="speed-pill sel">1x</div>
+            <div class="speed-pill">1.25x</div>
+            <div class="speed-pill">1.5x</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dev-section">
+        <div class="dev-section-title">Scripture</div>
+        <div class="scripture-box">
+          <div class="scripture-text">"For I know the plans I have for you," declares the Lord, "plans to prosper you and not to harm you, plans to give you hope and a future."</div>
+          <div class="scripture-ref">Jeremiah 29:11 · NIV · <span style="color:#555;cursor:pointer;">Change translation</span></div>
+        </div>
+      </div>
+
+      <div class="dev-section">
+        <div class="dev-section-title">Reflection</div>
+        <div class="reflection-text">
+          God's timing is rarely our timing. We live in an age of instant gratification, where waiting feels like failure. But the scriptures remind us that God works all things together — not some things, not easy things — all things, for the good of those who love Him.<br><br>
+          Abraham waited 25 years for the promised son. Joseph spent 13 years in slavery and prison before his elevation. Yet in each case, the waiting was not wasted — it was preparation. God was not slow; He was thorough.
+        </div>
+      </div>
+
+      <div class="dev-section">
+        <div class="dev-section-title">Prayer</div>
+        <div class="prayer-box">
+          <div class="prayer-text">Lord, I surrender my timeline to You today. Where I have been anxious and impatient, forgive me. Teach me to trust that Your delays are not denials, and that everything You have promised will come to pass in Your perfect time. Amen.</div>
+        </div>
+      </div>
+
+      <div class="reaction-row">
+        <div class="reaction-btn"><span class="r-emoji">🙏</span><span class="r-label">Amen (24)</span></div>
+        <div class="reaction-btn"><span class="r-emoji">🔥</span><span class="r-label">Fire (18)</span></div>
+        <div class="reaction-btn"><span class="r-emoji">💡</span><span class="r-label">Insight (9)</span></div>
+        <div class="reaction-btn"><span class="r-emoji">❤️</span><span class="r-label">Blessed (31)</span></div>
+      </div>
+
+      <div class="dev-section" style="margin-bottom:16px;">
+        <div class="dev-section-title">Comments (7)</div>
+        <div style="background:#1a1a1a;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:8px;">
+          <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--forest));display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:#fff;flex-shrink:0;">CE</div>
+          <div style="font-size:.78rem;color:#555;flex:1;">Add a comment…</div>
+          <div style="font-size:.8rem;color:var(--flame);">→</div>
+        </div>
+      </div>
+
+      <div style="padding:0 20px 20px;">
+        <div style="background:linear-gradient(135deg,rgba(232,80,10,.12),rgba(192,57,43,.08));border:1px solid rgba(232,80,10,.2);border-radius:14px;padding:14px;text-align:center;cursor:pointer;" onclick="show('s-giving',null)">
+          <div style="font-size:.72rem;color:var(--ember);font-weight:600;margin-bottom:4px;">💛 Blessed by today's message?</div>
+          <div style="font-size:.78rem;color:#ddd;">Partner with this ministry · Give Now</div>
+        </div>
+      </div>
+
+      <div style="height:20px;"></div>
+    </div>
+    <div class="bottom-nav">
+      <div class="bn-item" onclick="show('s-home',null)"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></div>
+      <div class="bn-item" onclick="show('s-library',null)"><span class="bn-icon">📚</span><span class="bn-label">Library</span></div>
+      <div class="bn-item" onclick="show('s-bible',null)"><span class="bn-icon">📖</span><span class="bn-label">Bible</span></div>
+      <div class="bn-item" onclick="show('s-community',null)"><span class="bn-icon">👥</span><span class="bn-label">Community</span></div>
+      <div class="bn-item" onclick="show('s-profile',null)"><span class="bn-icon">👤</span><span class="bn-label">Profile</span></div>
+    </div>
+  </div>
+
+  <!-- ══ LIBRARY ══ -->
+  <div class="screen" id="s-library">
+    <div class="scroll-area">
+      <div class="lib-header">
+        <h2>Content Library</h2>
+        <div class="search-box">
+          <span>🔍</span>
+          <input type="text" placeholder="Search 700+ videos, topics, scripture…">
+        </div>
+        <div class="filter-row">
+          <div class="filter-pill sel">All</div>
+          <div class="filter-pill" onclick="selFilter(this)">Faith</div>
+          <div class="filter-pill" onclick="selFilter(this)">Prayer</div>
+          <div class="filter-pill" onclick="selFilter(this)">Marriage</div>
+          <div class="filter-pill" onclick="selFilter(this)">Purpose</div>
+          <div class="filter-pill" onclick="selFilter(this)">Healing</div>
+          <div class="filter-pill" onclick="selFilter(this)">Fear</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:12px;">Continue Watching</div>
+      <div class="hscroll" style="margin-bottom:20px;">
+        <div style="flex-shrink:0;width:200px;background:#1e1e1e;border-radius:14px;overflow:hidden;">
+          <div style="height:100px;background:linear-gradient(135deg,#0d3d10,#1a1a1a);display:flex;align-items:center;justify-content:center;font-size:1.8rem;position:relative;">
+            🎥
+            <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#2a2a2a;"><div style="width:65%;height:100%;background:var(--flame);"></div></div>
+          </div>
+          <div style="padding:8px 10px;"><div style="font-size:.72rem;font-weight:600;color:#ddd;margin-bottom:2px;">The God of Second Chances</div><div style="font-size:.6rem;color:var(--muted);">65% · 4 min left</div></div>
+        </div>
+        <div style="flex-shrink:0;width:200px;background:#1e1e1e;border-radius:14px;overflow:hidden;">
+          <div style="height:100px;background:linear-gradient(135deg,#1a1a00,#2a1a00);display:flex;align-items:center;justify-content:center;font-size:1.8rem;position:relative;">
+            🙏
+            <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#2a2a2a;"><div style="width:30%;height:100%;background:var(--flame);"></div></div>
+          </div>
+          <div style="padding:8px 10px;"><div style="font-size:.72rem;font-weight:600;color:#ddd;margin-bottom:2px;">Praying with Authority</div><div style="font-size:.6rem;color:var(--muted);">30% · 8 min left</div></div>
+        </div>
+      </div>
+
+      <div class="section-label">All Videos</div>
+      <div class="video-list-item" onclick="show('s-devotional',null)">
+        <div class="vli-thumb" style="background:linear-gradient(135deg,#0d3d10,#111);">🎥<div class="vli-play">▶</div></div>
+        <div class="vli-body">
+          <div class="vli-title">Walking in God's Perfect Timing</div>
+          <div class="vli-meta"><span>12:34</span><span>·</span><span>Faith</span><span>·</span><span>Apr 14</span></div>
+        </div>
+      </div>
+      <div class="video-list-item">
+        <div class="vli-thumb" style="background:linear-gradient(135deg,#1a1a00,#2a1a00);">🙏<div class="vli-play">▶</div></div>
+        <div class="vli-body">
+          <div class="vli-title">The Power of Midnight Prayer</div>
+          <div class="vli-meta"><span>15:12</span><span>·</span><span>Prayer</span><span>·</span><span>Apr 13</span></div>
+        </div>
+      </div>
+      <div class="video-list-item">
+        <div class="vli-thumb" style="background:linear-gradient(135deg,#1a0000,#2d0a0a);">❤️<div class="vli-play">▶</div></div>
+        <div class="vli-body">
+          <div class="vli-title">Loving Your Spouse Like Christ</div>
+          <div class="vli-meta"><span>18:45</span><span>·</span><span>Marriage</span><span>·</span><span>Apr 12</span></div>
+        </div>
+      </div>
+      <div class="video-list-item">
+        <div class="vli-thumb" style="background:linear-gradient(135deg,#0a001a,#1a003d);">✨<div class="vli-play">▶</div></div>
+        <div class="vli-body">
+          <div class="vli-title">Discovering Your Kingdom Purpose</div>
+          <div class="vli-meta"><span>14:22</span><span>·</span><span>Purpose</span><span>·</span><span>Apr 11</span></div>
+        </div>
+      </div>
+      <div style="height:80px;"></div>
+    </div>
+    <div class="bottom-nav">
+      <div class="bn-item" onclick="show('s-home',null)"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></div>
+      <div class="bn-item active" onclick="show('s-library',null)"><div class="bn-icon-wrap"><span class="bn-icon">📚</span></div><span class="bn-label" style="color:var(--flame)">Library</span></div>
+      <div class="bn-item" onclick="show('s-bible',null)"><span class="bn-icon">📖</span><span class="bn-label">Bible</span></div>
+      <div class="bn-item" onclick="show('s-community',null)"><span class="bn-icon">👥</span><span class="bn-label">Community</span></div>
+      <div class="bn-item" onclick="show('s-profile',null)"><span class="bn-icon">👤</span><span class="bn-label">Profile</span></div>
+    </div>
+  </div>
+
+  <!-- ══ BIBLE ══ -->
+  <div class="screen" id="s-bible">
+    <div class="scroll-area">
+      <div class="bible-header">
+        <h2>📖 Bible</h2>
+        <div class="search-box">
+          <span>🔍</span>
+          <input type="text" placeholder="Search verse, keyword, or John 3:16…">
+        </div>
+        <div class="translation-row">
+          <div class="trans-pill sel">NIV</div>
+          <div class="trans-pill" onclick="selTrans(this)">KJV</div>
+          <div class="trans-pill" onclick="selTrans(this)">ESV</div>
+          <div class="trans-pill" onclick="selTrans(this)">NLT</div>
+          <div class="trans-pill" onclick="selTrans(this)">AMP</div>
+          <div class="trans-pill" onclick="selTrans(this)">MSG</div>
+          <div class="trans-pill" onclick="selTrans(this)">+2,500 more</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:12px;">Today's Reading — Jeremiah 29</div>
+      <div class="bible-passage">
+        <div class="passage-header">Jeremiah 29:11–14</div>
+        <div class="verse-line highlighted"><sup class="vnum">11</sup>"For I know the plans I have for you," declares the Lord, "plans to prosper you and not to harm you, plans to give you hope and a future."</div>
+        <div class="verse-line"><sup class="vnum">12</sup>Then you will call on me and come and pray to me, and I will listen to you.</div>
+        <div class="verse-line"><sup class="vnum">13</sup>You will seek me and find me when you seek me with all your heart.</div>
+        <div class="verse-line"><sup class="vnum">14</sup>I will be found by you," declares the Lord, "and will bring you back from captivity."</div>
+      </div>
+
+      <div class="section-label">Browse Books</div>
+      <div class="bible-book-grid">
+        <div class="bible-book"><div class="bk-name">Genesis</div><div class="bk-count">50 ch</div></div>
+        <div class="bible-book"><div class="bk-name">Psalms</div><div class="bk-count">150 ch</div></div>
+        <div class="bible-book" style="border-color:var(--ember);"><div class="bk-name" style="color:var(--ember);">Proverbs</div><div class="bk-count">31 ch</div></div>
+        <div class="bible-book"><div class="bk-name">Isaiah</div><div class="bk-count">66 ch</div></div>
+        <div class="bible-book"><div class="bk-name">Jeremiah</div><div class="bk-count">52 ch</div></div>
+        <div class="bible-book"><div class="bk-name">Matthew</div><div class="bk-count">28 ch</div></div>
+        <div class="bible-book"><div class="bk-name">John</div><div class="bk-count">21 ch</div></div>
+        <div class="bible-book"><div class="bk-name">Romans</div><div class="bk-count">16 ch</div></div>
+        <div class="bible-book"><div class="bk-name">Philippians</div><div class="bk-count">4 ch</div></div>
+      </div>
+      <div style="height:80px;"></div>
+    </div>
+    <div class="bottom-nav">
+      <div class="bn-item" onclick="show('s-home',null)"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></div>
+      <div class="bn-item" onclick="show('s-library',null)"><span class="bn-icon">📚</span><span class="bn-label">Library</span></div>
+      <div class="bn-item active" onclick="show('s-bible',null)"><div class="bn-icon-wrap"><span class="bn-icon">📖</span></div><span class="bn-label" style="color:var(--flame)">Bible</span></div>
+      <div class="bn-item" onclick="show('s-community',null)"><span class="bn-icon">👥</span><span class="bn-label">Community</span></div>
+      <div class="bn-item" onclick="show('s-profile',null)"><span class="bn-icon">👤</span><span class="bn-label">Profile</span></div>
+    </div>
+  </div>
+
+  <!-- ══ JOURNAL ══ -->
+  <div class="screen" id="s-journal">
+    <div style="position:relative;flex:1;display:flex;flex-direction:column;overflow:hidden;">
+      <div class="scroll-area">
+        <div class="journal-header">
+          <h2>My Journal</h2>
+          <p>Reflect on what God is saying to you</p>
+        </div>
+
+        <div class="section-label">April 2026</div>
+        <div class="cal-row">
+          <div class="cal-day has-entry"><div class="cd-name">MON</div><div class="cd-num">7</div><div class="cd-dot"></div></div>
+          <div class="cal-day has-entry"><div class="cd-name">TUE</div><div class="cd-num">8</div><div class="cd-dot"></div></div>
+          <div class="cal-day has-entry"><div class="cd-name">WED</div><div class="cd-num">9</div><div class="cd-dot"></div></div>
+          <div class="cal-day"><div class="cd-name">THU</div><div class="cd-num">10</div><div class="cd-dot"></div></div>
+          <div class="cal-day has-entry"><div class="cd-name">FRI</div><div class="cd-num">11</div><div class="cd-dot"></div></div>
+          <div class="cal-day has-entry"><div class="cd-name">SAT</div><div class="cd-num">12</div><div class="cd-dot"></div></div>
+          <div class="cal-day has-entry"><div class="cd-name">SUN</div><div class="cd-num">13</div><div class="cd-dot"></div></div>
+          <div class="cal-day today"><div class="cd-name">MON</div><div class="cd-num">14</div><div class="cd-dot"></div></div>
+        </div>
+
+        <div class="section-label">Recent Entries</div>
+        <div class="journal-entry">
+          <div class="je-date">April 13, 2026</div>
+          <div class="je-title">He Really Does Restore</div>
+          <div class="je-preview">Today's message on restoration hit differently. I've been carrying this burden for months but today I felt a release…</div>
+          <div class="je-tags"><div class="je-tag">Healing</div><div class="je-tag">Faith</div></div>
+        </div>
+        <div class="journal-entry">
+          <div class="je-date">April 11, 2026</div>
+          <div class="je-title">Grateful for Small Victories</div>
+          <div class="je-preview">I got the call I've been waiting for. I know God was in this. The timing was too perfect…</div>
+          <div class="je-tags"><div class="je-tag">Gratitude</div><div class="je-tag">Purpose</div></div>
+        </div>
+        <div class="journal-entry">
+          <div class="je-date">April 9, 2026</div>
+          <div class="je-title">Prayer Changes Everything</div>
+          <div class="je-preview">I started praying at 5AM like the devotional suggested. Something shifts when you start the day with God…</div>
+          <div class="je-tags"><div class="je-tag">Prayer</div></div>
+        </div>
+        <div style="height:100px;"></div>
+      </div>
+      <div class="journal-fab">✏️</div>
+    </div>
+    <div class="bottom-nav">
+      <div class="bn-item" onclick="show('s-home',null)"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></div>
+      <div class="bn-item" onclick="show('s-library',null)"><span class="bn-icon">📚</span><span class="bn-label">Library</span></div>
+      <div class="bn-item" onclick="show('s-bible',null)"><span class="bn-icon">📖</span><span class="bn-label">Bible</span></div>
+      <div class="bn-item" onclick="show('s-community',null)"><span class="bn-icon">👥</span><span class="bn-label">Community</span></div>
+      <div class="bn-item" onclick="show('s-profile',null)"><span class="bn-icon">👤</span><span class="bn-label">Profile</span></div>
+    </div>
+  </div>
+
+  <!-- ══ PRAYER ══ -->
+  <div class="screen" id="s-prayer">
+    <div class="scroll-area">
+      <div style="padding:54px 20px 16px;background:linear-gradient(180deg,rgba(18,140,126,.6),transparent);">
+        <h2 style="font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:16px;">🙏 Prayer</h2>
+        <div class="prayer-tabs">
+          <div class="prayer-tab active" onclick="selTab(this)">My Prayers</div>
+          <div class="prayer-tab" onclick="selTab(this)">Prayer Wall</div>
+          <div class="prayer-tab" onclick="selTab(this)">Answered</div>
+        </div>
+      </div>
+
+      <div style="padding:0 20px 14px;display:flex;gap:8px;align-items:center;">
+        <div style="flex:1;background:#1e1e1e;border:1px dashed #333;border-radius:12px;padding:11px 14px;font-size:.78rem;color:#444;cursor:pointer;">+ Add new prayer request…</div>
+      </div>
+
+      <div class="prayer-item">
+        <div class="prayer-check" onclick="this.classList.toggle('answered')">✓</div>
+        <div class="prayer-info">
+          <div class="prayer-name">Job breakthrough for my brother</div>
+          <div class="prayer-cat">Family · Added 5 days ago</div>
+        </div>
+        <div class="prayer-count">🙏 12</div>
+      </div>
+      <div class="prayer-item">
+        <div class="prayer-check answered">✓</div>
+        <div class="prayer-info">
+          <div class="prayer-name" style="text-decoration:line-through;color:#555;">Safe delivery for my wife</div>
+          <div class="prayer-cat" style="color:var(--green);">✓ Answered · April 8</div>
+        </div>
+      </div>
+      <div class="prayer-item">
+        <div class="prayer-check" onclick="this.classList.toggle('answered')">✓</div>
+        <div class="prayer-info">
+          <div class="prayer-name">Healing for Mama's knee</div>
+          <div class="prayer-cat">Health · Added 2 weeks ago</div>
+        </div>
+        <div class="prayer-count">🙏 8</div>
+      </div>
+      <div class="prayer-item">
+        <div class="prayer-check" onclick="this.classList.toggle('answered')">✓</div>
+        <div class="prayer-info">
+          <div class="prayer-name">Wisdom for my business decisions</div>
+          <div class="prayer-cat">Work · Added 3 days ago</div>
+        </div>
+        <div class="prayer-count">🙏 5</div>
+      </div>
+
+      <div class="section-label" style="margin-top:16px;">Prayer Wall (Public)</div>
+      <div class="prayer-wall-item">
+        <div class="pw-user"><div class="pw-avatar">TN</div><div><div class="pw-name">Taiwo N.</div></div></div>
+        <div class="pw-text">Please pray for my company — we're in a difficult season financially but I believe God is turning things around.</div>
+        <div class="pw-actions">
+          <div class="pw-action praying">🙏 Praying (34)</div>
+          <div class="pw-action">💬 Reply</div>
+          <div class="pw-action">⋯</div>
+        </div>
+      </div>
+      <div class="prayer-wall-item">
+        <div class="pw-user"><div class="pw-avatar" style="background:linear-gradient(135deg,#c0392b,#8e1010);">AN</div><div><div class="pw-anon">Anonymous</div></div></div>
+        <div class="pw-text">Praying for restoration in my marriage. Things have been hard but I haven't given up on God's promise.</div>
+        <div class="pw-actions">
+          <div class="pw-action praying">🙏 Praying (51)</div>
+          <div class="pw-action">💬 Reply</div>
+        </div>
+      </div>
+      <div style="height:80px;"></div>
+    </div>
+    <div class="bottom-nav">
+      <div class="bn-item" onclick="show('s-home',null)"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></div>
+      <div class="bn-item" onclick="show('s-library',null)"><span class="bn-icon">📚</span><span class="bn-label">Library</span></div>
+      <div class="bn-item" onclick="show('s-bible',null)"><span class="bn-icon">📖</span><span class="bn-label">Bible</span></div>
+      <div class="bn-item" onclick="show('s-community',null)"><span class="bn-icon">👥</span><span class="bn-label">Community</span></div>
+      <div class="bn-item" onclick="show('s-profile',null)"><span class="bn-icon">👤</span><span class="bn-label">Profile</span></div>
+    </div>
+  </div>
+
+  <!-- ══ GIVING ══ -->
+  <div class="screen" id="s-giving">
+    <div class="scroll-area">
+      <div class="giving-hero">
+        <div class="back-btn" onclick="show('s-home',null)" style="color:rgba(255,255,255,.4);display:flex;align-items:center;gap:6px;cursor:pointer;margin-bottom:12px;font-size:.72rem;">← Back</div>
+        <h2>Give & Support</h2>
+        <p>Partner with this ministry and fuel the fire</p>
+        <div class="campaign-box">
+          <div class="camp-title">🏗️ Ministry Building Fund</div>
+          <div class="camp-sub">Help us build a permanent home for this ministry</div>
+          <div class="camp-bar"><div class="camp-fill"></div></div>
+          <div class="camp-stats">
+            <div class="camp-stat">Raised: <span>₦18.9M</span></div>
+            <div class="camp-stat">Goal: <span>₦30M</span></div>
+            <div class="camp-stat"><span>63%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:16px;">Select Amount (NGN)</div>
+      <div class="amount-grid">
+        <div class="amount-btn"><div class="amt-currency">₦</div><div class="amt-num">1,000</div></div>
+        <div class="amount-btn sel"><div class="amt-currency">₦</div><div class="amt-num">5,000</div></div>
+        <div class="amount-btn"><div class="amt-currency">₦</div><div class="amt-num">10,000</div></div>
+        <div class="amount-btn"><div class="amt-currency">₦</div><div class="amt-num">25,000</div></div>
+        <div class="amount-btn"><div class="amt-currency">₦</div><div class="amt-num">50,000</div></div>
+        <div class="amount-btn"><div class="amt-currency">₦</div><div class="amt-num">Custom</div></div>
+      </div>
+
+      <div class="section-label">Giving Type</div>
+      <div style="display:flex;gap:8px;padding:0 20px;margin-bottom:16px;">
+        <div style="flex:1;background:#1e1e1e;border:1.5px solid var(--flame);border-radius:12px;padding:10px;text-align:center;cursor:pointer;">
+          <div style="font-size:.72rem;font-weight:600;color:var(--flame);">One-Time</div>
+        </div>
+        <div style="flex:1;background:#1e1e1e;border:1.5px solid #333;border-radius:12px;padding:10px;text-align:center;cursor:pointer;">
+          <div style="font-size:.72rem;color:#888;">Monthly</div>
+        </div>
+        <div style="flex:1;background:#1e1e1e;border:1.5px solid #333;border-radius:12px;padding:10px;text-align:center;cursor:pointer;">
+          <div style="font-size:.72rem;color:#888;">Pledge</div>
+        </div>
+      </div>
+
+      <div class="section-label">Give To</div>
+      <div class="fund-list">
+        <div class="fund-item sel"><div class="fund-icon">🏗️</div><div class="fund-name">Building Fund</div><div class="fund-check">✓</div></div>
+        <div class="fund-item" onclick="selFund(this)"><div class="fund-icon">🌍</div><div class="fund-name">Missions</div></div>
+        <div class="fund-item" onclick="selFund(this)"><div class="fund-icon">🙏</div><div class="fund-name">General Offering</div></div>
+        <div class="fund-item" onclick="selFund(this)"><div class="fund-icon">✨</div><div class="fund-name">Special Campaign</div></div>
+      </div>
+
+      <div style="padding:20px;">
+        <button class="btn-primary">Proceed to Pay · ₦5,000 →</button>
+        <div style="text-align:center;margin-top:10px;font-size:.62rem;color:#444;">Secured by Flutterwave · PCI-DSS Compliant</div>
+      </div>
+      <div style="height:20px;"></div>
+    </div>
+    <div class="bottom-nav">
+      <div class="bn-item" onclick="show('s-home',null)"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></div>
+      <div class="bn-item" onclick="show('s-library',null)"><span class="bn-icon">📚</span><span class="bn-label">Library</span></div>
+      <div class="bn-item" onclick="show('s-bible',null)"><span class="bn-icon">📖</span><span class="bn-label">Bible</span></div>
+      <div class="bn-item" onclick="show('s-community',null)"><span class="bn-icon">👥</span><span class="bn-label">Community</span></div>
+      <div class="bn-item" onclick="show('s-profile',null)"><span class="bn-icon">👤</span><span class="bn-label">Profile</span></div>
+    </div>
+  </div>
+
+  <!-- ══ COMMUNITY ══ -->
+  <div class="screen" id="s-community">
+    <div class="scroll-area">
+      <div class="community-header">
+        <h2>Community</h2>
+        <div class="comm-tabs">
+          <div class="comm-tab active" onclick="selCommTab(this)">Comments</div>
+          <div class="comm-tab" onclick="selCommTab(this)">Circles</div>
+          <div class="comm-tab" onclick="selCommTab(this)">Discover</div>
+        </div>
+      </div>
+
+      <div class="section-label">Today's Devotional Discussion</div>
+      <div class="comment-item">
+        <div class="c-avatar" style="background:linear-gradient(135deg,var(--green),var(--forest));">AB</div>
+        <div class="c-body">
+          <div class="c-name">Adaeze B. · 2h ago</div>
+          <div class="c-text">This message came at the right time. I have been struggling with impatience and God really spoke to me today. Thank you pastor!</div>
+          <div class="c-actions"><div class="c-action liked">❤️ 14</div><div class="c-action">💬 Reply</div><div class="c-action">🔁 Amen</div></div>
+        </div>
+      </div>
+      <div class="comment-item">
+        <div class="c-avatar" style="background:linear-gradient(135deg,#c0392b,#8e1010);">KO</div>
+        <div class="c-body">
+          <div class="c-name">Kolade O. · 4h ago</div>
+          <div class="c-text">The Joseph example really hit different. 13 years! And yet he came out without bitterness. That is the grace of God.</div>
+          <div class="c-actions"><div class="c-action">❤️ 8</div><div class="c-action">💬 Reply</div><div class="c-action">🔁 Amen</div></div>
+        </div>
+      </div>
+      <div class="comment-item">
+        <div class="c-avatar" style="background:linear-gradient(135deg,#1a3d6b,#0d2244);">PN</div>
+        <div class="c-body">
+          <div class="c-name">Precious N. · 5h ago</div>
+          <div class="c-text">🔥🔥🔥 Saving this one. "God's delays are not denials" — this is a word!</div>
+          <div class="c-actions"><div class="c-action">❤️ 22</div><div class="c-action">💬 Reply</div><div class="c-action">🔁 Amen</div></div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:12px;">Your Circles</div>
+      <div class="circle-card">
+        <div class="circle-icon" style="background:rgba(37,211,102,.15);">🌿</div>
+        <div class="circle-info">
+          <div class="circle-name">Growth Group Lagos</div>
+          <div class="circle-members">24 members · Active</div>
+        </div>
+        <div class="circle-badge">3 new</div>
+      </div>
+      <div class="circle-card">
+        <div class="circle-icon" style="background:rgba(232,80,10,.15);">🔥</div>
+        <div class="circle-info">
+          <div class="circle-name">Diaspora Prayer Circle</div>
+          <div class="circle-members">67 members · Very active</div>
+        </div>
+        <div class="circle-badge">12 new</div>
+      </div>
+      <div style="padding:16px 20px;">
+        <div style="background:#1e1e1e;border:1px dashed #333;border-radius:14px;padding:14px;text-align:center;cursor:pointer;">
+          <div style="font-size:.78rem;color:#555;">+ Create or join a circle</div>
+        </div>
+      </div>
+      <div style="height:80px;"></div>
+    </div>
+    <div class="bottom-nav">
+      <div class="bn-item" onclick="show('s-home',null)"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></div>
+      <div class="bn-item" onclick="show('s-library',null)"><span class="bn-icon">📚</span><span class="bn-label">Library</span></div>
+      <div class="bn-item" onclick="show('s-bible',null)"><span class="bn-icon">📖</span><span class="bn-label">Bible</span></div>
+      <div class="bn-item active" onclick="show('s-community',null)"><div class="bn-icon-wrap"><span class="bn-icon">👥</span></div><span class="bn-label" style="color:var(--flame)">Community</span></div>
+      <div class="bn-item" onclick="show('s-profile',null)"><span class="bn-icon">👤</span><span class="bn-label">Profile</span></div>
+    </div>
+  </div>
+
+  <!-- ══ STREAKS ══ -->
+  <div class="screen" id="s-streaks">
+    <div class="scroll-area">
+      <div class="streak-hero">
+        <div style="font-size:.62rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;padding-top:10px;">Your Streak</div>
+        <span class="streak-fire">🔥</span>
+        <div class="streak-num">14</div>
+        <div class="streak-label">Day Streak</div>
+        <div class="streak-grace">🛡️ Grace day available</div>
+      </div>
+
+      <div class="section-label" style="margin-top:16px;">Milestones</div>
+      <div class="milestone-row">
+        <div class="milestone done"><span class="ms-icon">🌟</span><div class="ms-day">7</div><div class="ms-label">days</div></div>
+        <div class="milestone done"><span class="ms-icon">🔥</span><div class="ms-day">14</div><div class="ms-label">days</div></div>
+        <div class="milestone"><span class="ms-icon">💪</span><div class="ms-day">30</div><div class="ms-label">days</div></div>
+        <div class="milestone"><span class="ms-icon">⚡</span><div class="ms-day">60</div><div class="ms-label">days</div></div>
+        <div class="milestone"><span class="ms-icon">👑</span><div class="ms-day">100</div><div class="ms-label">days</div></div>
+        <div class="milestone"><span class="ms-icon">🏆</span><div class="ms-day">365</div><div class="ms-label">days</div></div>
+      </div>
+
+      <div class="section-label">Your Stats</div>
+      <div class="personal-stats">
+        <div class="ps-card"><span class="ps-icon">🎬</span><div class="ps-num">47</div><div class="ps-label">Videos Watched</div></div>
+        <div class="ps-card"><span class="ps-icon">📖</span><div class="ps-num">23</div><div class="ps-label">Verses Saved</div></div>
+        <div class="ps-card"><span class="ps-icon">🙏</span><div class="ps-num">31</div><div class="ps-label">Prayers Prayed</div></div>
+        <div class="ps-card"><span class="ps-icon">✍️</span><div class="ps-num">11</div><div class="ps-label">Journal Entries</div></div>
+      </div>
+
+      <div class="section-label">Badges Earned</div>
+      <div class="badge-row">
+        <div class="badge earned"><span class="b-icon">🌟</span><div class="b-label">7-Day Fire</div></div>
+        <div class="badge earned"><span class="b-icon">🔥</span><div class="b-label">14-Day Blaze</div></div>
+        <div class="badge"><span class="b-icon">💪</span><div class="b-label">30-Day Wall</div></div>
+        <div class="badge"><span class="b-icon">🙏</span><div class="b-label">Prayer Warrior</div></div>
+        <div class="badge"><span class="b-icon">💛</span><div class="b-label">Faithful Giver</div></div>
+      </div>
+
+      <div style="height:100px;"></div>
+    </div>
+    <div class="bottom-nav">
+      <div class="bn-item" onclick="show('s-home',null)"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></div>
+      <div class="bn-item" onclick="show('s-library',null)"><span class="bn-icon">📚</span><span class="bn-label">Library</span></div>
+      <div class="bn-item" onclick="show('s-bible',null)"><span class="bn-icon">📖</span><span class="bn-label">Bible</span></div>
+      <div class="bn-item" onclick="show('s-community',null)"><span class="bn-icon">👥</span><span class="bn-label">Community</span></div>
+      <div class="bn-item" onclick="show('s-profile',null)"><span class="bn-icon">👤</span><span class="bn-label">Profile</span></div>
+    </div>
+  </div>
+
+  <!-- ══ PROFILE ══ -->
+  <div class="screen" id="s-profile">
+    <div class="scroll-area">
+      <div class="profile-hero">
+        <div class="profile-avatar">CE</div>
+        <div class="profile-name">Chukwuemeka Obi</div>
+        <div class="profile-church">RCCG Lagos · Member since Jan 2026</div>
+        <div class="profile-verse">"I can do all things through Christ" — Phil 4:13</div>
+      </div>
+
+      <div class="stats-row" style="margin-top:16px;">
+        <div class="stat-box"><div class="stat-num">14</div><div class="stat-label">Day Streak</div></div>
+        <div class="stat-box"><div class="stat-num">47</div><div class="stat-label">Devotionals</div></div>
+        <div class="stat-box"><div class="stat-num">2</div><div class="stat-label">Badges</div></div>
+      </div>
+
+      <div class="section-label">Badges</div>
+      <div class="badge-row">
+        <div class="badge earned"><span class="b-icon">🌟</span><div class="b-label">7-Day Fire</div></div>
+        <div class="badge earned"><span class="b-icon">🔥</span><div class="b-label">14-Day Blaze</div></div>
+        <div class="badge"><span class="b-icon">💪</span><div class="b-label">30 Days</div></div>
+        <div class="badge"><span class="b-icon">💛</span><div class="b-label">Giver</div></div>
+      </div>
+
+      <div class="section-label" style="margin-top:8px;">Settings</div>
+      <div class="settings-list">
+        <div class="settings-item"><div class="si-icon">🌙</div><div class="si-label">Dark Mode</div><div class="si-toggle"></div></div>
+        <div class="settings-item"><div class="si-icon">🔔</div><div class="si-label">Notifications</div><div class="si-arrow">›</div></div>
+        <div class="settings-item"><div class="si-icon">📖</div><div class="si-label">Default Bible Translation</div><div class="si-arrow">›</div></div>
+        <div class="settings-item"><div class="si-icon">🔤</div><div class="si-label">Font Size</div><div class="si-arrow">›</div></div>
+        <div class="settings-item"><div class="si-icon">⬇️</div><div class="si-label">Offline Downloads</div><div class="si-arrow">›</div></div>
+        <div class="settings-item"><div class="si-icon">💛</div><div class="si-label">Giving History</div><div class="si-arrow">›</div></div>
+        <div class="settings-item"><div class="si-icon">🔒</div><div class="si-label">Privacy & Data</div><div class="si-arrow">›</div></div>
+        <div class="settings-item" style="border-bottom:none;"><div class="si-icon" style="background:rgba(192,57,43,.15);">🚪</div><div class="si-label" style="color:#c0392b;">Sign Out</div></div>
+      </div>
+      <div style="height:100px;"></div>
+    </div>
+    <div class="bottom-nav">
+      <div class="bn-item" onclick="show('s-home',null)"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></div>
+      <div class="bn-item" onclick="show('s-library',null)"><span class="bn-icon">📚</span><span class="bn-label">Library</span></div>
+      <div class="bn-item" onclick="show('s-bible',null)"><span class="bn-icon">📖</span><span class="bn-label">Bible</span></div>
+      <div class="bn-item" onclick="show('s-community',null)"><span class="bn-icon">👥</span><span class="bn-label">Community</span></div>
+      <div class="bn-item active" onclick="show('s-profile',null)"><div class="bn-icon-wrap"><span class="bn-icon">👤</span></div><span class="bn-label" style="color:var(--flame)">Profile</span></div>
+    </div>
+  </div>
+
+</div><!-- /phone-shell -->
+</div><!-- /phone-wrap -->
+
+<div class="screen-indicator">12 screens · Click buttons above to navigate · All screens interactive</div>
+
+<script>
+function show(id, btn){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(btn){
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+}
+function selOpt(el){
+  el.closest('.onboard-header').querySelectorAll('.quiz-option').forEach(o=>o.classList.remove('sel'));
+  el.classList.add('sel');
+}
+function selFilter(el){
+  el.closest('.filter-row').querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('sel'));
+  el.classList.add('sel');
+}
+function selTrans(el){
+  el.closest('.translation-row').querySelectorAll('.trans-pill').forEach(p=>p.classList.remove('sel'));
+  el.classList.add('sel');
+}
+function selTab(el){
+  el.closest('.prayer-tabs').querySelectorAll('.prayer-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+function selCommTab(el){
+  el.closest('.comm-tabs').querySelectorAll('.comm-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+function selFund(el){
+  el.closest('.fund-list').querySelectorAll('.fund-item').forEach(f=>{f.classList.remove('sel');f.querySelector('.fund-check')&&f.querySelector('.fund-check').remove();});
+  el.classList.add('sel');
+  const check=document.createElement('div');check.className='fund-check';check.textContent='✓';
+  el.appendChild(check);
+}
+</script>
+</body>
+</html>
